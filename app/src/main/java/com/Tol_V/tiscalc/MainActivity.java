@@ -2,11 +2,12 @@ package com.Tol_V.tiscalc;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,13 +39,21 @@ public class MainActivity extends Activity {
         for (Node cur: items){
             View item = ltInflater.inflate(R.layout.list_item, linLayout, false);
 
-            TextView tvType = (TextView) item.findViewById(R.id.tvType);
+            //TextView tvType = (TextView) item.findViewById(R.id.tvType);
             TextView tvName = (TextView) item.findViewById(R.id.tvName);
             //ImageView ivPicture = (ImageView) findViewById(R.id.ivPicture);
 
-            String type = cur.getType().name();//cur.getType() == NodeType.CATEGORY ? "Category" : "Item";
+            //String type = cur.getType() == NodeType.CATEGORY ? "Category" : "Item";
 
-            tvType.setText(type);
+            if (cur instanceof Item){
+                item.setBackgroundColor(getResources().getColor(R.color.item_background));
+            }
+
+            if (cur instanceof Category){
+                item.setBackgroundColor(getResources().getColor(R.color.category_background));
+            }
+
+            //tvType.setText(type);
             tvName.setText(cur.getName());
             //ivPicture.setImageDrawable(R.drawable.ic_launcher);
 
@@ -66,9 +75,17 @@ public class MainActivity extends Activity {
                     }
 
                     Node tmp = items.get(i);
-                    if (tmp.getType() == NodeType.CATEGORY){
+                    if (tmp instanceof Category){
                         tree.setCurrent((Category)tmp);
                         drawList();
+                    }
+
+                    if (tmp instanceof Item){
+                        FinalItem newItem = new FinalItem((Item)tmp, "test", 1);
+                        SelectedItems.getInstance().addFinalItem(newItem);
+                        String msg = newItem.toString();
+                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                        Log.d("added FinalItem: ", msg);
                     }
 
                 }
@@ -102,19 +119,16 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }*/
 
-    /*public void btnTestClick(View view) {
-        Node node = new Node(null, "Fuck You", null, NodeType.ITEM);
-        Node item = new Item(null, "Item1", null, NodeType.ITEM, 100);
-        Node category = new Category(null, "Category1", null, NodeType.CATEGORY);
-
-        String msg = node.toString() + "\n" + item.toString() + '\n' + category.toString();
-        Log.d("BLA", msg);
-        txtViewTest.setText(msg);
-    }*/
-
-    public void btnBackClick(View view) {
+    @Override
+    public void onBackPressed() {
         NodesTree tree = NodesTree.getInstance();
         tree.setCurrentUp();
         drawList();
+    }
+
+    public void btnBackClick(View view) {
+//        NodesTree tree = NodesTree.getInstance();
+//        tree.setCurrentUp();
+//        drawList();
     }
 }

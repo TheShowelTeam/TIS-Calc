@@ -8,24 +8,13 @@
     android:paddingTop="@dimen/std_padding"
     android:layout_margin="@dimen/std_margin">
 
-
-    <TextView
-        android:id="@+id/tvType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/test_string"
-        android:padding="@dimen/std_padding"
-        android:layout_gravity="start|center_vertical"
-        android:textSize="24sp">
-    </TextView>
-
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/std_padding"
         android:text="@string/test_string"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_gravity="start|center_vertical"
         android:textSize="24sp">
     </TextView>
 

@@ -25,18 +25,18 @@ public class NodesTree {
     }
 
     private void fillTree(){
-        Node level1Cat1 = new Category("level1Cat1", null, NodeType.CATEGORY);
-        Node level1Cat2 = new Category("level1Cat2", null, NodeType.CATEGORY);
+        Node level1Cat1 = new Category("level1Cat1", "", NodeType.CATEGORY);
+        Node level1Cat2 = new Category("level1Cat2", "", NodeType.CATEGORY);
 
-        Node level1Item1 = new Item("level1Item1", null, NodeType.ITEM, 11);
-        Node level2Cat1 = new Category("level2Cat1", null, NodeType.CATEGORY);
-        Node level2Cat2 = new Category("level2Cat2", null, NodeType.CATEGORY);
-        Node level2Cat3 = new Category("level2Cat3", null, NodeType.CATEGORY);
+        Node level1Item1 = new Item("level1Item1", "", NodeType.ITEM, 11);
+        Node level2Cat1 = new Category("level2Cat1", "", NodeType.CATEGORY);
+        Node level2Cat2 = new Category("level2Cat2", "", NodeType.CATEGORY);
+        Node level2Cat3 = new Category("level2Cat3", "", NodeType.CATEGORY);
 
-        Node level3Item1 = new Item("level3Item1", null, NodeType.ITEM, 31);
-        Node level3Item2 = new Item("level3Item2", null, NodeType.ITEM, 32);
-        Node level3Item3 = new Item("level3Item3", null, NodeType.ITEM, 33);
-        Node level3Item4 = new Item("level3Item4", null, NodeType.ITEM, 34);
+        Node level3Item1 = new Item("level3Item1", "", NodeType.ITEM, 31);
+        Node level3Item2 = new Item("level3Item2", "", NodeType.ITEM, 32);
+        Node level3Item3 = new Item("level3Item3", "", NodeType.ITEM, 33);
+        Node level3Item4 = new Item("level3Item4", "", NodeType.ITEM, 34);
 
         addChildren(level1Cat1);
 

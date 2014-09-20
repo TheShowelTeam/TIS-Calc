@@ -27,6 +27,11 @@ public class Item extends Node{
         this.price = price;
     }
 
+    public Item(Item i){
+        super(i);
+        this.price = i.getPrice();
+    }
+
     public int getPrice() {
         return price;
     }
@@ -37,6 +42,25 @@ public class Item extends Node{
 
     @Override
     public String toString() {
-        return super.toString() + " " + price;
+        return super.toString() + ". Price: " + price;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!super.equals(object)){
+            return false;
+        }
+
+        if (!(object instanceof Item)){
+            return false;
+        }
+
+        if (this == object){
+            return true;
+        }
+
+        Item rhs = (Item)object;
+
+        return rhs.getPrice() == this.price;
     }
 }
