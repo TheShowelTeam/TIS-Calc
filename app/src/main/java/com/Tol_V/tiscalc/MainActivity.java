@@ -42,12 +42,7 @@ public class MainActivity extends Activity {
             TextView tvName = (TextView) item.findViewById(R.id.tvName);
             //ImageView ivPicture = (ImageView) findViewById(R.id.ivPicture);
 
-            String type = cur.getType() == NodeType.CATEGORY ? "Category" : "Item";
-//            if (cur.getType() == NodeType.CATEGORY){
-//                type = "Category";
-//            } else {
-//                type = "Item";
-//            }
+            String type = cur.getType().name();//cur.getType() == NodeType.CATEGORY ? "Category" : "Item";
 
             tvType.setText(type);
             tvName.setText(cur.getName());
