@@ -2,12 +2,8 @@ package com.Tol_V.tiscalc;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,8 +13,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    private TextView txtViewTest;
-    private Button btnTest;
     private LinearLayout linLayout;
 
     @Override
@@ -28,9 +22,7 @@ public class MainActivity extends Activity {
 
         getInterfaceResources();
 
-        NodesTree tree = NodesTree.getInstance();
-        //Log.d("root:", tree.toString() );
-        txtViewTest.setText(tree.toString());
+        NodesTree.getInstance();
 
         drawList();
     }
@@ -46,15 +38,28 @@ public class MainActivity extends Activity {
         for (Node cur: items){
             View item = ltInflater.inflate(R.layout.list_item, linLayout, false);
 
+            TextView tvType = (TextView) item.findViewById(R.id.tvType);
+            TextView tvName = (TextView) item.findViewById(R.id.tvName);
+            //ImageView ivPicture = (ImageView) findViewById(R.id.ivPicture);
+
+            String type = cur.getType() == NodeType.CATEGORY ? "Category" : "Item";
+//            if (cur.getType() == NodeType.CATEGORY){
+//                type = "Category";
+//            } else {
+//                type = "Item";
+//            }
+
+            tvType.setText(type);
+            tvName.setText(cur.getName());
+            //ivPicture.setImageDrawable(R.drawable.ic_launcher);
+
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View item) {
                     NodesTree tree = NodesTree.getInstance();
                     ArrayList<Node> items = tree.getChildren();
 
-                    TextView tvType = (TextView) item.findViewById(R.id.tvType);
                     TextView tvName = (TextView) item.findViewById(R.id.tvName);
-                    ImageView ivPicture = (ImageView) findViewById(R.id.ivPicture);
 
                     String name = tvName.getText().toString();
                     int i = 0;
@@ -74,32 +79,12 @@ public class MainActivity extends Activity {
                 }
             });
 
-            TextView tvType = (TextView) item.findViewById(R.id.tvType);
-            TextView tvName = (TextView) item.findViewById(R.id.tvName);
-            ImageView ivPicture = (ImageView) findViewById(R.id.ivPicture);
-
-            String type;// = cur.getType() == NodeType.CATEGORY ? "Category" : "Item";
-            if (cur.getType() == NodeType.CATEGORY){
-                type = "Category";
-            } else {
-                type = "Item";
-            }
-
-            if (item == null){
-                Log.d("WE ARE", " STILL FUCKED");
-            }
-
-            tvType.setText(type);
-            tvName.setText(cur.getName());
-            //ivPicture.setImageDrawable(R.drawable.ic_launcher);
-
             linLayout.addView(item);
 
         }
     }
 
     private void getInterfaceResources(){
-        txtViewTest = (TextView) findViewById(R.id.txtViewTest);
         linLayout = (LinearLayout) findViewById(R.id.linLayout);
     }
 
@@ -122,7 +107,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }*/
 
-    public void btnTestClick(View view) {
+    /*public void btnTestClick(View view) {
         Node node = new Node(null, "Fuck You", null, NodeType.ITEM);
         Node item = new Item(null, "Item1", null, NodeType.ITEM, 100);
         Node category = new Category(null, "Category1", null, NodeType.CATEGORY);
@@ -130,7 +115,7 @@ public class MainActivity extends Activity {
         String msg = node.toString() + "\n" + item.toString() + '\n' + category.toString();
         Log.d("BLA", msg);
         txtViewTest.setText(msg);
-    }
+    }*/
 
     public void btnBackClick(View view) {
         NodesTree tree = NodesTree.getInstance();
