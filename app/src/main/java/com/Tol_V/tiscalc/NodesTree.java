@@ -23,7 +23,6 @@ public class NodesTree {
 
     private NodesTree() {
         current = root;
-        //fillTree();
         Mega_shit();
     }
 
