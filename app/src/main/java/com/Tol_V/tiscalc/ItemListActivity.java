@@ -104,11 +104,11 @@ public class ItemListActivity extends Activity {
             TextView tvFullPrice = (TextView) item.findViewById(R.id.tvFullPriceExt);
             TextView tvComment = (TextView) item.findViewById(R.id.tvCommentExt);
 
-            tvName.setText("Name: " + cur.getName());
-            tvCount.setText("Count: " + Integer.toString(cur.getCount()));
-            tvPrice.setText("Cost: " + Integer.toString(cur.getPrice()));
-            tvFullPrice.setText("Price: " + Integer.toString(cur.getFullPrice()));
-            tvComment.setText("Comment: " + cur.getComment());
+            tvName.setText("Название: " + cur.getName());
+            tvCount.setText("Кол-во: " + Integer.toString(cur.getCount()));
+            tvPrice.setText("Цена: " + Float.toString((float)cur.getPrice()/100));
+            tvFullPrice.setText("Стоимость: " + Float.toString((float)cur.getFullPrice()/100));
+            tvComment.setText("Коммент.: " + cur.getComment());
 
             final FinalItem tmpCur = new FinalItem(cur);
             item.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +125,7 @@ public class ItemListActivity extends Activity {
         TextView tvResultPrice = (TextView) item.findViewById(R.id.tvResultPrice);
 
         DecimalFormat df = new DecimalFormat("#.##");
-        String msg = "Result price: " + df.format(SelectedItems.getInstance().getResultPrice());
+        String msg = "Итоговая цена: " + df.format((float)SelectedItems.getInstance().getResultPrice()/100);
         tvResultPrice.setText(msg);
         linLayout.addView(item);
     }
