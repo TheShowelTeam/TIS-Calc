@@ -28,6 +28,17 @@ public class MainActivity extends Activity {
         drawList();
     }
 
+    @Override
+    public void onBackPressed() {
+        NodesTree tree = NodesTree.getInstance();
+        tree.setCurrentUp();
+        drawList();
+    }
+
+    private void getInterfaceResources(){
+        linLayout = (LinearLayout) findViewById(R.id.linLayout);
+    }
+
     private void drawList(){
 
         linLayout.removeAllViews();
@@ -39,22 +50,17 @@ public class MainActivity extends Activity {
         for (Node cur: items){
             View item = ltInflater.inflate(R.layout.list_item, linLayout, false);
 
-            //TextView tvType = (TextView) item.findViewById(R.id.tvType);
             TextView tvName = (TextView) item.findViewById(R.id.tvName);
             //ImageView ivPicture = (ImageView) findViewById(R.id.ivPicture);
 
-            //String type = cur.getType() == NodeType.CATEGORY ? "Category" : "Item";
-
+            tvName.setText(cur.getName());
             if (cur instanceof Item){
                 item.setBackgroundColor(getResources().getColor(R.color.item_background));
             }
-
             if (cur instanceof Category){
                 item.setBackgroundColor(getResources().getColor(R.color.category_background));
             }
 
-            //tvType.setText(type);
-            tvName.setText(cur.getName());
             //ivPicture.setImageDrawable(R.drawable.ic_launcher);
 
             item.setOnClickListener(new View.OnClickListener() {
@@ -96,10 +102,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void getInterfaceResources(){
-        linLayout = (LinearLayout) findViewById(R.id.linLayout);
-    }
-
 /*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -118,17 +120,4 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }*/
-
-    @Override
-    public void onBackPressed() {
-        NodesTree tree = NodesTree.getInstance();
-        tree.setCurrentUp();
-        drawList();
-    }
-
-    public void btnBackClick(View view) {
-//        NodesTree tree = NodesTree.getInstance();
-//        tree.setCurrentUp();
-//        drawList();
-    }
 }
