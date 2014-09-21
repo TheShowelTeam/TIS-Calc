@@ -1,7 +1,5 @@
 package com.Tol_V.tiscalc;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 
 public class NodesTree {
