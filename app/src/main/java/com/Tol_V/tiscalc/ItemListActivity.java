@@ -101,6 +101,8 @@ public class ItemListActivity extends Activity {
                 String price = Float.toString((float)selectedItems.getFinalItem(i).getFullPrice()/100);
                 bw.write(name + tab + comment + tab + cost + tab + count + tab + price + "\n");
             }
+            bw.write("Итого:" + Float.toString((float)selectedItems.getResultPrice()/100));
+
             // закрываем поток
             bw.close();
             Log.d("writeList()", "Файл записан на SD: " + sdFile.getAbsolutePath());
