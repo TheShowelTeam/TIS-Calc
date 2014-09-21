@@ -7,6 +7,7 @@
 
     <string name="btnTestText">test!</string>
     <string name="btnBackText">Back!</string>
+    <string name="test_string">lol</string>
 
 
 </resources>

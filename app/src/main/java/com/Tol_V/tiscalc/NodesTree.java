@@ -84,18 +84,18 @@ public class NodesTree {
     private void Mega_shit()
     {
         // ВНЕШНИЕ КАТЕГОРИИ
-       Node[] MainCategories = {
-               new Category("Тепловое оборудование(+)", null, NodeType.CATEGORY),
-               new Category("Барное/Фаст-Фуд(+)", null, NodeType.CATEGORY),
-               new Category("Механическое оборудование(+)", null, NodeType.CATEGORY),
-               new Category("Холодильное оборудование(+)", null, NodeType.CATEGORY),
-               new Category("Производство мучных изделий(+)", null, NodeType.CATEGORY),
-               new Category("Нейтральное оборудование(+)", null, NodeType.CATEGORY),
-               new Category("Прачечное оборудование(+)", null, NodeType.CATEGORY),
-               new Category("Весы и торговое оборудование(+)", null, NodeType.CATEGORY),
-               new Category("Подсобный инвентарь(+)", null, NodeType.CATEGORY),
-               new Category("Восточная кухня(+)", null, NodeType.CATEGORY),
-       };
+        Node[] MainCategories = {
+                new Category("Тепловое оборудование(+)", null, NodeType.CATEGORY),
+                new Category("Барное/Фаст-Фуд(+)", null, NodeType.CATEGORY),
+                new Category("Механическое оборудование(+)", null, NodeType.CATEGORY),
+                new Category("Холодильное оборудование(+)", null, NodeType.CATEGORY),
+                new Category("Производство мучных изделий(+)", null, NodeType.CATEGORY),
+                new Category("Нейтральное оборудование(+)", null, NodeType.CATEGORY),
+                new Category("Прачечное оборудование(+)", null, NodeType.CATEGORY),
+                new Category("Весы и торговое оборудование(+)", null, NodeType.CATEGORY),
+                new Category("Подсобный инвентарь(+)", null, NodeType.CATEGORY),
+                new Category("Восточная кухня(+)", null, NodeType.CATEGORY),
+        };
 
         for (int i = 0; i < MainCategories.length; i++)
         {

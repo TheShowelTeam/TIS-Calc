@@ -9,8 +9,8 @@ public class Node {
 
     {
         parent = null;
-        name = null;
-        picturePath = null;
+        name = "";
+        picturePath = "";
         type = null;
     }
 
@@ -27,6 +27,13 @@ public class Node {
         this.name = name;
         this.picturePath = pic;
         this.type = type;
+    }
+
+    public Node(Node t){
+        this.parent = t.getParent();
+        this.name = t.getName();
+        this.picturePath = t.getPicturePath();
+        this.type = t.getType();
     }
 
     //getters
@@ -53,6 +60,23 @@ public class Node {
 
     @Override
     public String toString() {
-        return type  + ": " + name;
+        return "Type: " + type  + ". Name: " + name;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Node)){
+            return false;
+        }
+
+        if (object == this){
+            return true;
+        }
+
+        Node rhs = (Node)object;
+        return rhs.getType() == this.type &&
+                rhs.getName().equals(this.name) &&
+                rhs.getParent() == this.parent &&
+                rhs.getPicturePath().equals(this.picturePath);
     }
 }
