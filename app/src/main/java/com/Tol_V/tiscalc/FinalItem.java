@@ -44,7 +44,8 @@ public class FinalItem extends Item {
 
     public void setComment(String newComment){
         if (newComment != null){
-            this.comment = newComment;
+            this.comment += "||";
+            this.comment += newComment;
         }
     }
 
