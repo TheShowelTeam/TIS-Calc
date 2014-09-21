@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Добавление!")
-                .setMessage("Вы хотите добавить?")
+                .setMessage(tmp.getName())
                 .setCancelable(false)
                 .setNegativeButton("Отмена",
                         new DialogInterface.OnClickListener() {
