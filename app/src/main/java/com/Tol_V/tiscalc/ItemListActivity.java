@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +23,37 @@ public class ItemListActivity extends Activity {
         setContentView(R.layout.activity_item_list);
 
         drawList();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_delete_list:
+                deleteList();
+                return true;
+            case R.id.action_write_list:
+                writeList();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteList(){
+        SelectedItems.getInstance().deleteAllItems();
+        drawList();
+    }
+
+    private void writeList(){
+        //do stuff
     }
 
     private  void DeleteDialog(final FinalItem tmp)
@@ -51,6 +84,8 @@ public class ItemListActivity extends Activity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+
     private void drawList() {
         LinearLayout linLayout = (LinearLayout) findViewById(R.id.linLayout2);
         linLayout.removeAllViews();
@@ -94,22 +129,5 @@ public class ItemListActivity extends Activity {
         tvResultPrice.setText(msg);
         linLayout.addView(item);
     }
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.item_list, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 }

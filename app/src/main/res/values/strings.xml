@@ -9,5 +9,7 @@
     <string name="test_string">lol</string>
     <string name="menu_item_list">Список</string>
     <string name="title_activity_item_list">ItemListActivity</string>
+    <string name="item_delete_list">Delete</string>
+    <string name="item_write_list">Write list</string>
 
 </resources>

@@ -65,4 +65,8 @@ public class SelectedItems {
         }
     }
 
+    public void deleteAllItems(){
+        items.clear();
+    }
+
 }

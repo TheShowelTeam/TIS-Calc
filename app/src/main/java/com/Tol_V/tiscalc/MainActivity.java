@@ -102,6 +102,7 @@ public class MainActivity extends Activity {
         alert.setView(layout);
         alert.show();
     }
+
     private void drawList(){
 
         linLayout.removeAllViews();
