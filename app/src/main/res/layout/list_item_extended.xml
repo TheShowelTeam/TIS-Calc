@@ -19,7 +19,17 @@
         <!--android:layout_gravity="center_horizontal"-->
     <!--android:layout_gravity="left|top"-->
 
+    </TextView>
 
+    <TextView
+        android:id="@+id/tvCommentExt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/std_padding"
+        android:text="@string/test_string"
+        android:textSize="24sp">
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_gravity="left|top"-->
 
     </TextView>
 

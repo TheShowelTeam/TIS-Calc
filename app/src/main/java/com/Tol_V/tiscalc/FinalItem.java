@@ -9,10 +9,10 @@ public class FinalItem extends Item {
     {
         comment = "";
         count = 1;
-        fullPrice = calcFinalPrice();
+        fullPrice = calcFullPrice();
     }
 
-    private int calcFinalPrice(){
+    private int calcFullPrice(){
         return count * price;
     }
 
@@ -20,6 +20,14 @@ public class FinalItem extends Item {
         super(item);
         this.comment = comment;
         this.count = count;
+        this.fullPrice = calcFullPrice();
+    }
+
+    public FinalItem(FinalItem rhs){
+        super(rhs);
+        this.comment = rhs.getComment();
+        this.count = rhs.getCount();
+        this.fullPrice = rhs.getFullPrice();
     }
 
     public String getComment(){
@@ -38,6 +46,10 @@ public class FinalItem extends Item {
         if (newComment != null){
             this.comment = newComment;
         }
+    }
+
+    public void recountFinalPrice(){
+        this.fullPrice = calcFullPrice();
     }
 
     public String toString(){

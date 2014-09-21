@@ -32,6 +32,7 @@ public class SelectedItems {
             FinalItem tmp = items.get(index);
             tmp.setCount(tmp.getCount() + fi.getCount());
             tmp.setComment(fi.getComment());
+            tmp.recountFinalPrice();
         } else {
             items.add(fi);
         }
@@ -46,6 +47,22 @@ public class SelectedItems {
 
     public ArrayList<FinalItem> getItems(){
         return new ArrayList<FinalItem>(items);
+    }
+
+    public double getResultPrice(){
+        double res = 0;
+        for (FinalItem tmp: items){
+            res += tmp.getFullPrice();
+        }
+        return res;
+    }
+
+    public void deleteFinalItem(FinalItem item){
+        int index = items.indexOf(item);
+
+        if (index != -1){
+            items.remove(index);
+        }
     }
 
 }

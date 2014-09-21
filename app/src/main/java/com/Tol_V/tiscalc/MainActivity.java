@@ -49,7 +49,9 @@ public class MainActivity extends Activity {
     }
 
 
+
     private void ShowAddDialog(final Item tmp)
+
     {
         Context mContext = getApplicationContext();
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
