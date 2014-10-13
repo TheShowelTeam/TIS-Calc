@@ -39,7 +39,7 @@ public class SelectedItems {
     }
 
     public FinalItem getFinalItem(int index){
-        if (index > 0 && index < items.size()){
+        if (index >= 0 && index < items.size()){
             return items.get(index);
         }
         return null;

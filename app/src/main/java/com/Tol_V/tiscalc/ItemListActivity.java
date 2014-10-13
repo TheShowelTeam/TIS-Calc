@@ -65,7 +65,67 @@ public class ItemListActivity extends Activity {
     }
 
 
-    private void writeToFile(String filePath)
+    private void writeToFileHTML(String filePath)
+    {
+        if (filePath.equals("")) {
+            Log.d("writeListPDF()", "empty input");
+            return;
+        }
+        if (!Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED)) {
+            Log.d("writeListPDF()", "SD-карта не доступна: " + Environment.getExternalStorageState());
+            return;
+        }
+        // получаем путь к SD
+        File sdPath = Environment.getExternalStorageDirectory();
+        // добавляем свой каталог к пути
+        sdPath = new File(sdPath.getAbsolutePath() + "/" + "TISCalc(results)");
+        // создаем каталог
+        sdPath.mkdirs();
+        // формируем объект File, который содержит путь к файлу
+        File sdFile = new File(sdPath, filePath+".html");
+        try {
+            // открываем поток для записи
+            BufferedWriter bw = new BufferedWriter(new FileWriter(sdFile));
+            // пишем данные
+            SelectedItems selectedItems = SelectedItems.getInstance();
+            String tab = "\t";
+            String op = "<td>";
+            String cl = "</td>";
+
+
+            bw.write("<html>" +
+                    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" +
+                    "<table border>\n" +
+                    "        <tr>\n" +
+                    "                <th>Название</th> <th>Кол-во</th> <th>Стоимость</th>\n" +
+                    "        </tr>");
+           // bw.write("--------------------------------------\n");
+            for (int i = 0; i < selectedItems.getItems().size(); i++)
+            {
+                String name = selectedItems.getFinalItem(i).getName();
+                String count = Integer.toString(selectedItems.getFinalItem(i).getCount());
+                String comment = selectedItems.getFinalItem(i).getComment();
+                String cost = Float.toString((float)selectedItems.getFinalItem(i).getPrice()/100);
+                String price = Float.toString((float)selectedItems.getFinalItem(i).getFullPrice()/100);
+
+                bw.write("<tr>");
+                bw.write(op+name+cl + op+count+cl + op+price+cl);
+                bw.write("</tr>");
+            }
+            bw.write("</table>");
+            bw.write("Итого:" + Float.toString((float)selectedItems.getResultPrice()/100));
+            bw.write("</html>");
+            // закрываем поток
+            bw.close();
+            Log.d("writeList()", "Файл записан на SD: " + sdFile.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void writeToFileTXT(String filePath)
     {
         if (filePath.equals("")) {
             Log.d("writeList()", "empty input");
@@ -92,7 +152,7 @@ public class ItemListActivity extends Activity {
             String tab = "\t";
             bw.write("Название" + tab + "Коммент." + tab + "Цена" + tab + "Кол-во" + tab + "Стоимость\n");
             bw.write("--------------------------------------\n");
-            for (int i = 1; i < selectedItems.getItems().size(); i++)
+            for (int i = 0; i < selectedItems.getItems().size(); i++)
             {
                 String name = selectedItems.getFinalItem(i).getName();
                 String count = Integer.toString(selectedItems.getFinalItem(i).getCount());
@@ -157,7 +217,9 @@ public class ItemListActivity extends Activity {
                 .setPositiveButton("Сохранить",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                writeToFile(input.getText().toString());
+                                writeToFileTXT(input.getText().toString());
+                                writeToFileHTML(input.getText().toString());
+
                                 dialog.cancel();
                             }
                         }
