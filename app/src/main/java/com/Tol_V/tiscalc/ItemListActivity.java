@@ -3,6 +3,8 @@ package com.Tol_V.tiscalc;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -16,8 +18,10 @@ import android.widget.TextView;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -94,12 +98,12 @@ public class ItemListActivity extends Activity {
             String cl = "</td>";
 
 
-            bw.write("<html>" +
-                    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" +
-                    "<table border>\n" +
-                    "        <tr>\n" +
-                    "                <th>Название</th> <th>Кол-во</th> <th>Стоимость</th>\n" +
-                    "        </tr>");
+            bw.write("<html>\n" +
+                    "\n" +
+                    "<img src=\"logo_small.png\">\n" +
+                    "<meta charset=\"utf-8\">"+
+                    "<h1 align = \"center\"> Коммерческое предложение <h1>\n" +
+                    "<table border align = \"center\">");
            // bw.write("--------------------------------------\n");
             for (int i = 0; i < selectedItems.getItems().size(); i++)
             {
@@ -118,7 +122,39 @@ public class ItemListActivity extends Activity {
             bw.write("</html>");
             // закрываем поток
             bw.close();
-            Log.d("writeList()", "Файл записан на SD: " + sdFile.getAbsolutePath());
+
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+            // Find the SD Card path
+            File filepath = Environment.getExternalStorageDirectory();
+
+            // Create a new folder in SD Card
+            File dir = new File(filepath.getAbsolutePath()
+                    + "/TISCalc(results)/");
+            dir.mkdirs();
+
+            // Create a name for the saved image
+            File file = new File(dir, "logo_small.png");
+
+            OutputStream output;
+
+            // Show a toast message on successful save
+            try {
+
+                output = new FileOutputStream(file);
+
+                // Compress into png format image from 0% - 100%
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+                output.flush();
+                output.close();
+            }
+
+            catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+
+        Log.d("writeList()", "Файл записан на SD: " + sdFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
