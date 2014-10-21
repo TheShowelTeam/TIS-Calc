@@ -98,12 +98,13 @@ public class ItemListActivity extends Activity {
             String cl = "</td>";
 
 
-            bw.write("<html>\n" +
-                    "\n" +
-                    "<img src=\"logo_small.png\">\n" +
-                    "<meta charset=\"utf-8\">"+
-                    "<h1 align = \"center\"> Коммерческое предложение <h1>\n" +
-                    "<table border align = \"center\">");
+            bw.write("<html>" +
+                    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" +
+                    "<h1 align = \"center\"> Коммерческое предложение </h1>\n" +
+                    "<table border align = \"center\">" +
+                    "        <tr>\n" +
+                    "                <th>Название</th> <th>Кол-во</th> <th>Стоимость</th>\n" +
+                    "        </tr>");
            // bw.write("--------------------------------------\n");
             for (int i = 0; i < selectedItems.getItems().size(); i++)
             {
@@ -118,7 +119,9 @@ public class ItemListActivity extends Activity {
                 bw.write("</tr>");
             }
             bw.write("</table>");
+            bw.write("<p align =\"center\">");
             bw.write("Итого:" + Float.toString((float)selectedItems.getResultPrice()/100));
+            bw.write("</p>");
             bw.write("</html>");
             // закрываем поток
             bw.close();
